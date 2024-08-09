@@ -18,6 +18,7 @@ set(TESTS
   Dirichlet
   LW_surface_press
   channelwidth
+  overland_flow_mia
 )
 
 if(${PARFLOW_HAVE_HYPRE})

@@ -365,6 +365,23 @@ void         BCPressurePackage(
 	    break;
           } /* End OverlandFlow */
 
+	  case OverlandFlowMia:
+          {
+            NewBCPressureTypeStruct(OverlandFlowMia, interval_data);
+	    
+            BCPressureDataBCType(bc_pressure_data, i) = OverlandMiaBC;
+
+	    GetTypeStruct(OverlandFlowMia, data, public_xtra, i);
+
+	    OverlandFlowMiaValue(interval_data)
+              = (data->values[interval_number]);
+
+	    BCPressureDataIntervalValue(bc_pressure_data, i, interval_number)
+              = (void*)interval_data;
+	    break;
+
+          } /* End OverlandFlowMia */
+
           /* Setup a file defined flux condition structure for overland flow BC*/
           case OverlandFlowPFB:
           {

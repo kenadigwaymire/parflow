@@ -874,6 +874,44 @@ PFModule *OverlandFlowEvalKinNewPublicXtra(void);
 void OverlandFlowEvalKinFreePublicXtra(void);
 int OverlandFlowEvalKinSizeOfTempData(void);
 
+typedef void (*OverlandFlowEvalMiaInvoke) (Grid *       grid,
+                                        int          sg,
+                                        BCStruct *   bc_struct,
+                                        int          ipatch,
+                                        ProblemData *problem_data,
+                                        Vector *     pressure,
+                                        Vector *     old_pressure,
+                                        double *     ke_v,
+                                        double *     kw_v,
+                                        double *     kn_v,
+                                        double *     ks_v,
+                                        double *     qx_v,
+                                        double *     qy_v,
+                                        int          fcn);
+
+
+
+void OverlandFlowEvalMia(Grid *       grid,
+                      int          sg,
+                      BCStruct *   bc_struct,
+                      int          ipatch,
+                      ProblemData *problem_data,
+                      Vector *     pressure,
+                      Vector *     old_pressure,
+                      double *     ke_v,
+                      double *     kw_v,
+                      double *     kn_v,
+                      double *     ks_v,
+                      double *     qx_v,
+                      double *     qy_v,
+                      int          fcn);
+
+PFModule *OverlandFlowMiaInitInstanceXtra(void);
+void OverlandFlowMiaFreeInstanceXtra(void);
+PFModule *OverlandFlowMiaNewPublicXtra(void);
+void OverlandFlowMiaFreePublicXtra(void);
+int OverlandFlowMiaSizeOfTempData(void);
+
 typedef void (*ICPhaseSaturInvoke) (Vector *ic_phase_satur, int phase, ProblemData *problem_data);
 typedef PFModule *(*ICPhaseSaturNewPublicXtraInvoke) (int num_phases);
 

@@ -987,6 +987,39 @@ BCStruct    *BCPressure(
           break;
         } /* End OverlandFlow */
 
+	case OverlandFlowMia:
+        {
+          /* Constant "rainfall" rate value on patch */
+          double flux;
+
+          GetBCPressureTypeStruct(FluxConst, interval_data, bc_pressure_data,
+                                  ipatch, interval_number);
+
+          flux = OverlandFlowMiaValue(interval_data);
+
+          ForSubgridI(is, subgrids)
+          {
+            subgrid = SubgridArraySubgrid(subgrids, is);
+
+            /* compute patch_values_size (this isn't really needed yet) */
+            patch_values_size = 0;
+            ForEachPatchCell(i, j, k, ival, bc_struct, ipatch, is,
+            {
+              patch_values_size++;
+            });
+
+            patch_values = talloc(double, patch_values_size);
+            memset(patch_values, 0, patch_values_size * sizeof(double));
+            values[ipatch][is] = patch_values;
+
+            ForEachPatchCell(i, j, k, ival, bc_struct, ipatch, is,
+            {
+              patch_values[ival] = flux;
+            });
+          }       /* End subgrid loop */
+          break;
+        } /* End OverlandFlowMia */
+
         case OverlandFlowPFB:
         {
           /* Read input fluxes from file (overland) */

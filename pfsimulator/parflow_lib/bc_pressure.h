@@ -86,6 +86,7 @@
 #define SeepageFace      9
 #define OverlandKinematic 10
 #define OverlandDiffusive 11
+#define OverlandFlowMia 12
 /** @} */
 
 
@@ -139,6 +140,9 @@
     double *values;              \
   })                             \
   BC_TYPE(OverlandDiffusive, {   \
+    double *values;              \
+  })                             \
+  BC_TYPE(OverlandFlowMia,   {   \
     double *values;              \
   })
 
@@ -236,6 +240,9 @@
     double value;                \
   })                             \
   BC_TYPE(OverlandDiffusive, {   \
+    double value;                \
+  })                             \
+  BC_TYPE(OverlandFlowMia,   {   \
     double value;                \
   })
 
@@ -372,6 +379,9 @@ typedef struct {
 /*--------------------------------------------------------------------------*/
     #define OverlandDiffusiveValue(patch) \
   ((patch)->value)
+
+#define OverlandFlowMiaValue(patch) ((patch)->value)
+
 /*--------------------------------------------------------------------------
  * Accessor macros: BCPressureData
  *--------------------------------------------------------------------------*/

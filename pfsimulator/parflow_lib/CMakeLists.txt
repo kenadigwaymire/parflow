@@ -235,6 +235,7 @@ else( (${PARFLOW_HAVE_CUDA}) OR (${PARFLOW_HAVE_KOKKOS}) OR (${PARFLOW_HAVE_OMP}
     overlandflow_eval.c
     overlandflow_eval_diffusive.c
     overlandflow_eval_Kin.c
+    overlandflow_mia.c
     phase_velocity_face.c
     pf_module.c
     problem_bc.c
