@@ -1026,7 +1026,35 @@ PFModule  *BCPressurePackageNewPublicXtra(
 	  
 	  break;
         } /* End OverlandDiffusive */
-	
+	case OverlandFlowMia:
+
+        {
+
+          NewTypeStruct(OverlandFlowMia, data);
+
+          (data->values) = ctalloc(double, interval_division);
+
+          ForEachInterval(interval_division, interval_number)
+
+          {
+
+            sprintf(key, "Patch.%s.BCPressure.%s.Value",
+
+                    patch_name,
+
+                    NA_IndexToName(GlobalsIntervalNames[global_cycle],
+
+                                   interval_number));
+
+            data->values[interval_number] = GetDouble(key);
+
+          }
+
+          StoreTypeStruct(public_xtra, data, i);
+
+          break;
+
+        } /* End OverlandFlowMia */
       } /* End switch types */
     } /* End for patches */
   } /* if patches */
@@ -1188,6 +1216,21 @@ void  BCPressurePackageFreePublicXtra()
             tfree(data);
 	    break;
           }
+	  case OverlandFlowMia:
+
+          {
+
+            GetTypeStruct(OverlandFlowMia, data, public_xtra, i);
+
+            tfree((data->values));
+
+            tfree(data);
+
+            break;
+
+          }
+
+
 
 	  default:
 	  {
